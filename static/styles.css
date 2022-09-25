@@ -296,13 +296,13 @@ Contact
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
 }
 
 #contact .fa-paper-plane {
     font-size: 34px;
     margin-bottom: 2rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
     color: var(--accent);
 }
 
@@ -311,7 +311,7 @@ Contact
 }
 
 #contact p {
-    text-align: left;
+    text-align: center;
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 2rem;
@@ -621,8 +621,8 @@ Media Queries
     }
 
     #contact {
-        margin-top: 4rem;
-        margin-bottom: 6rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
     }
 
     #contact h2 {
