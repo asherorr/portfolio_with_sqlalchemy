@@ -1,11 +1,14 @@
-from flask import render_template, url_for, request
+from sqlite3 import Date
+from flask import render_template, url_for, request, redirect
 from models import db, Project, app
+import datetime
 
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    projects = Project.query.all()
+    return render_template('index.html', projects=projects)
 
 
 @app.route('/about')
@@ -35,7 +38,20 @@ def contact_me():
 
 @app.route('/projects/new_project', methods=['GET', 'POST'])
 def create_new_project():
-    print(request.form)
+    if request.form:
+        print(request.form)
+        print(request.form['title'])
+        split_date = request.form['date'].split('/')
+        year = int(split_date[0])
+        month = int(split_date[1])
+        day = int(split_date[2])
+        date_to_submit = datetime.date(year,month,day)
+        new_project = Project(title=request.form['title'], completion_date=date_to_submit,
+                            description=request.form['desc'], skills=request.form['skills'],
+                            github_link=request.form['github'])
+        db.session.add(new_project)
+        db.session.commit()
+        return redirect(url_for('index'))
     return render_template('add_project.html')
 
 

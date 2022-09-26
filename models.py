@@ -12,8 +12,8 @@ class Project(db.Model):
     title = db.Column('Title', db.String())
     completion_date = db.Column('Completion Date', db.Date)
     description = db.Column('Description', db.Text)
-    skills = db.Column('Skills', db.String())
-    github_link = db.Column('Github Link', db.String())
+    skills = db.Column('Skills', db.Text())
+    github_link = db.Column('Github Link', db.Text())
     
 
     def __repr__(self):
