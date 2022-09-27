@@ -27,8 +27,21 @@ def list_of_projects():
 
 
 @app.route('/projects/<id>')
-def show_detail_of_project():
-    return render_template('detail.html')
+def show_detail_of_project(id):
+    project = Project.query.get(id)
+    individual_skill = project.skills.split(',')
+    str_date = str(project.completion_date)
+    split_date = str_date.split("-")
+    list_of_months = ['Placeholder', 'January', 'February', 'March', 'April', 'May', 'June', 
+                    'July', 'August', 'September', 'October', 'November', 'December']
+    year = split_date[0]
+    month = split_date[1]
+    day = split_date[2]
+    month_to_int = int(month)
+    assign_month = list_of_months[month_to_int]
+    readable_date = f'{assign_month} {day}, {year}'
+    return render_template('projects.html', project=project, individual_skill=individual_skill,
+    readable_date=readable_date)
 
 
 @app.route('/contact')
