@@ -34,23 +34,23 @@
             <div id="triangle3"></div>
             <i class="fas fa-file-code"></i>
             <h2>Projects</h2>
+            {% for project in projects %}
             <div id="project-list">
                 <div id="project1" class="a-project">
-                    <h3>Project Title</h3>
-                    <a href="#" class="github-btn">
+                    <h3>{{ project.title }}</h3>
+                    <a href="{{ project.github_link }}" class="github-btn">
                         <i class="fab fa-github"></i>
                         View on GitHub
                     </a>
                     <p>
-                        Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
+                        {{ project.description }}
                     </p>
                     <p>
-                        Skills: Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
+                        Skills: {{ project. skills}}
                     </p>
                 </div>
-                <div id="project2" class="a-project">
+            {% endfor %}
+                <!-- <div id="project2" class="a-project">
                     <h3>Project Title</h3>
                     <a href="#" class="github-btn">
                         <i class="fab fa-github"></i>
@@ -95,7 +95,7 @@
                         Gummi bears pudding sugar plum macaroon. 
                     </p>
                 </div>
-            </div>
+            </div> -->
             <div id="triangle4"></div>
         </section>
         <section id="contact">
