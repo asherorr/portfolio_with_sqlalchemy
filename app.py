@@ -49,7 +49,7 @@ def contact_me():
     return render_template('contact.html')
 
 
-@app.route('/projects/new_project', methods=['GET', 'POST'])
+@app.route('/projects/new', methods=['GET', 'POST'])
 def create_new_project():
     if request.form:
         print(request.form)
@@ -68,12 +68,26 @@ def create_new_project():
     return render_template('add_project.html')
 
 
-@app.route('/projects/<id>/edit')
-def edit_or_update_project():
-    return render_template('edit_project.html')
+@app.route('/project/<id>/edit', methods=['GET', 'POST'])
+def edit_project(id):
+    project = Project.query.get(id)
+    if request.form:
+        split_date = request.form['date'].split('-')
+        year = int(split_date[0])
+        month = int(split_date[1])
+        day = int(split_date[2])
+        date_to_submit = datetime.date(year, month, day)
+        project.title = request.form['title']
+        project.completion_date = date_to_submit
+        project.description = request.form['desc']
+        project.skills = request.form['skills']
+        project.github_link = request.form['github']
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('edit_project.html', project=project)
 
 
-@app.route('/delete/<id>')
+@app.route('/project/<id>/delete')
 def delete_project(id):
     pass
     # pet = Pet.query.get_or_404(id)
