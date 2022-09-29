@@ -89,11 +89,10 @@ def edit_project(id):
 
 @app.route('/project/<id>/delete')
 def delete_project(id):
-    pass
-    # pet = Pet.query.get_or_404(id)
-    # db.session.delete(pet)
-    # db.session.commit()
-    # return redirect(url_for('index'))
+    project = Project.query.get(id)
+    db.session.delete(project)
+    db.session.commit()
+    return redirect(url_for('index'))
     
 if __name__ == '__main__':
     db.create_all()
