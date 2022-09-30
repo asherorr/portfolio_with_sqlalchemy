@@ -4,7 +4,6 @@ from models import db, Project, app
 import datetime
 
 
-
 @app.route('/')
 def index():
     projects = Project.query.all()
@@ -101,10 +100,12 @@ def delete_project(id):
     db.session.commit()
     return redirect(url_for('index'))
 
+
 @app.errorhandler(404)
 def not_found(error):
     projects = Project.query.all()
     return render_template('404.html', msg=error, projects=projects), 404
+    
     
 if __name__ == '__main__':
     db.create_all()
