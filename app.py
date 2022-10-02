@@ -57,9 +57,7 @@ def contact_me():
 def create_new_project():
     projects = Project.query.all()
     if request.form:
-        print(request.form)
-        print(request.form['title'])
-        split_date = request.form['date'].split('/')
+        split_date = request.form['date'].split('-')
         year = int(split_date[0])
         month = int(split_date[1])
         day = int(split_date[2])
